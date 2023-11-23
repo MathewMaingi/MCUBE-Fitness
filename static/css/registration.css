@@ -1,0 +1,89 @@
+
+.form-container{
+  background-color: transparent;
+  padding: 5px;
+  border-radius: 10px;
+  text-align: center;
+  align-content: center;
+  position: relative;
+}
+.form{
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+input{
+  width: 50%;
+  padding: 10px;
+  font-size: 10px;
+  border-radius: 1px;
+}
+h2{
+  color: #ffffff;
+  font-weight: bolder;
+  text-align: center;
+}
+h2 span{
+  color: #32e332;
+}
+.text-container{
+	margin-top: 200px;
+	margin-bottom: 30px;
+  margin-right: 60px;
+  margin-left: 70px;
+}
+
+.text-container h1 {
+	font-size: 52px;
+  font-weight: bolder;
+	text-transform: uppercase;
+	color: #ffffff;
+	font-weight: 700;
+}
+.text-container h1 span{
+  color: #32e332;
+}
+.text-container p {
+	font-size: 16px;
+	color: rgb(255, 255, 255);
+}
+.paragraph{
+  font-size: 15px;
+  font-weight: bolder;
+  color: #ffffff;
+  font-style: italic;
+  font-family: "Barlow Semi Condensed Black";
+}
+.btn{
+  width: 60%;
+
+
+}
+.paragraph1{
+  font-family: "Barlow Semi Condensed Black";
+  color: #d72f2f;
+  font-style: italic;
+  font-size: 15px;
+  font-weight: bolder;
+}
+p span{
+  color: #32e332;
+  font-size: 20px;
+}
+.form-check a{
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bolder;
+}
+.form-check-label{
+  justify-content: left;
+ color: #ffffff;
+  margin-left:90px;
+  font-size: 20px;
+  font-weight: bolder;
+}
+.form-check-input{
+  text-align: center;
+
+}
+
