@@ -60,7 +60,26 @@
 	</header>
 	<div class="clearfix"></div>
 
-    <p>inner page</p>
+<div class="nav_tabs">
+    <div class="row">
+
+        <div class="col-lg-4 mt-4 mt-lg-0">
+            <div class="add_blog" id="tab-1">
+
+                  <h2>Upload Blog</h2>
+               <form method="post" enctype="multipart/form-data" action="{% url 'upload_image' %}">
+                       {% csrf_token %}
+                       {{ form.as_p }}
+                   <button type="submit">Upload Image</button>
+                   <a href="{% url 'blog' %}" class="btn btn-outline-success">View Your Blogs</a>
+                  </form>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
 
 <section class="newsletter-section set-bg" data-setbg="{% static 'img/newsletter-bg.jpg' %}">
 		<div class="container">
@@ -71,7 +90,7 @@
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<form class="newsletter-form">
+					<form class="newsletter-form" method="post">
                         {% csrf_token %}
 						<input type="text" placeholder="Your e-mail here">
 						<button class="site-btn" type="submit">Subscribe</button>

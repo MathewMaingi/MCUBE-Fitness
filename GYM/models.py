@@ -25,3 +25,29 @@ class Contact(models.Model):
     def __str__(self):
         return self.contactname
 
+class Trainer(models.Model):
+    image = models.ImageField(upload_to='my-trainers/')
+    name = models.CharField(max_length=50)
+    speciality = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+
+
+class Blog(models.Model):
+    CATEGORY_CHOICES = [
+        ('events and competitions', 'nutrition tips'),
+        ('body building', 'pilates and yoga'),
+        ('workout', 'fitness'),
+        ('wellness treatments', 'uncategorized'),
+        # Add more categories as needed
+    ]
+
+    tab_name = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
+    blogimage = models.ImageField(upload_to='blogs/')
+    about = models.CharField(max_length=100)
+    description = models.TextField()
+
+    def __str__(self):
+        return f"{self.tab_name} - {self.about}"

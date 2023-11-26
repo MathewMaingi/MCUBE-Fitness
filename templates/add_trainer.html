@@ -60,8 +60,16 @@
 		</ul>
 	</header>
 	<div class="clearfix"></div>
+    <div class="add_trainer">
 
-    <p>inner page</p>
+        <form action="/trainer/" enctype="multipart/form-data" class="text-center d-block m-auto mb-4" method="post">
+            {% csrf_token %}
+           <h3>ADD TRAINER</h3>
+            {{ form.as_p }}
+            <button type="submit" >ADD</button>
+            <a href="{% url 'about' %}" class="btn btn-success">See Your Trainers</a>
+        </form>
+    </div>
 
 <section class="newsletter-section set-bg" data-setbg="{% static 'img/newsletter-bg.jpg' %}">
 		<div class="container">
@@ -72,7 +80,7 @@
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<form class="newsletter-form">
+					<form class="newsletter-form" method="post">
                         {% csrf_token %}
 						<input type="text" placeholder="Your e-mail here">
 						<button class="site-btn" type="submit">Subscribe</button>

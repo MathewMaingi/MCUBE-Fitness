@@ -13,5 +13,7 @@ urlpatterns = [
     path('elements/', views.elements, name='elements'),
     path('login/', views.login, name='login'),
     path('registration/', views.registration, name='registration'),
-    path('inner/', views.inner, name='inner')
+    path('inner/', views.inner, name='inner'),
+    path('trainer/', views.add_trainer, name='trainer'),
+    path('add_blog/', views.add_blog, name='add_blog')
 ]

@@ -592,7 +592,11 @@ Milestones section
 /* ----------------
 Trainers section
  ---------------------*/
-
+.trainer{
+	     display: flex;
+          justify-content:space-between;
+          flex-wrap: wrap
+}
 .trainers-section {
 	padding: 121px 0 75px;
 }

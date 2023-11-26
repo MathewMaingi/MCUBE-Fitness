@@ -127,44 +127,22 @@
 			<div class="section-title text-center">
 				<h2>Meet the <span>Trainers</span></h2>
 			</div>
-			<div class="row">
+        <div class="trainer">
+              {% for mytrainer in trainer  %}
 				<div class="col-lg-3 col-sm-6">
 					<div class="trainer-item">
 						<div class="trainer-pic">
-							<img src="{% static 'img/trainers/1.jpg' %}" alt="">
+							<img src="{{ mytrainer.image.url }}" alt="add trainer">
 						</div>
-						<h4>Michael Smith</h4>
-						<p>Vivamus libero mauris, bibendum eget sapien ac, ultrices rhoncus ipsum nec sapien.</p>
-					</div>
+						<h4>{{ mytrainer.name }}</h4>
+						<p>{{ mytrainer.speciality }}</p>
+
+
+                 					</div>
 				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="trainer-item">
-						<div class="trainer-pic">
-							<img src="{% static 'img/trainers/2.jpg' %}" alt="">
-						</div>
-						<h4>Jessica Black</h4>
-						<p>Ac, ultrices rhoncus ipsum. Donec nec sapien in urna fermentum ornare.</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="trainer-item">
-						<div class="trainer-pic">
-							<img src="{% static 'img/trainers/3.jpg' %}" alt="">
-						</div>
-						<h4>James Brown</h4>
-						<p>Libero mauris, bibendum eget sapien ac, ultrices rhoncus ipsum. Donec nec sapien.</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="trainer-item">
-						<div class="trainer-pic">
-							<img src="{% static 'img/trainers/4.jpg' %}" alt="">
-						</div>
-						<h4>Paula Carlton</h4>
-						<p>Sapien ac, ultrices rhoncus ipsum. Donec nec sapien in urna fermen-tum ornare.</p>
-					</div>
-				</div>
-			</div>
+              {% endfor %}
+</div>
+
 		</div>
 	</section>
 	<!-- Trainers section end -->
@@ -210,7 +188,7 @@
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<form class="newsletter-form">
+					<form class="newsletter-form" method="post">
                         {% csrf_token %}
 						<input type="text" placeholder="Your e-mail here">
 						<button class="site-btn" type="submit">Subscribe</button>
