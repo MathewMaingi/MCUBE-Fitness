@@ -108,3 +108,24 @@ $(window).on('load', function() {
 	});
 
 })(jQuery);
+
+// subscription
+function subscribe() {
+    var email = document.getElementById('emailInput').value;
+    var currentPage = document.getElementById('currentPage').value;
+
+    // Send data to the server using AJAX
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/subscribe', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // Redirect to the current page after successful subscription
+            window.location.href = currentPage;
+        }
+    };
+
+    var data = JSON.stringify({ email: email, currentPage: currentPage });
+    xhr.send(data);
+}

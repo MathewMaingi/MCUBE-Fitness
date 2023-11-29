@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -38,16 +39,27 @@
 	</div>
 
 	<!-- Header section -->
+	<!-- Header section -->
 	<header class="header-section">
 		<a href="{% url 'home' %}" class="site-logo">
 			<img src="{% static 'img/logo.png' %}" alt="">
 		</a>
-		<ul class="main-menu">
-			<li><a class="active" href="{% url 'home' %}">Home</a></li>
-			<li><a href="{% url 'about' %}">About Us</a></li>
-			<li><a href="{% url 'classes' %}">Classes</a></li>
-			<li><a href="{% url 'blog' %}">News</a></li>
-			<li><a href="{% url 'contact' %}">Contact</a></li>
+
+			<ul class="nav nav-tabs main-menu" id="myTabs">
+        <li class="nav-item">
+            <a class="nav-link active " id="tab-1-tab" data-toggle="tab" href="#tab-1">Trainers</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " id="tab-2-tab" data-toggle="tab" href="#tab-2">Marketplace</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " id="tab-2-tab" data-toggle="tab" href="#tab-3">Subscriptions</a>
+        </li>
+         <li class="nav-item">
+            <a class="nav-link  " id="tab-2-tab" data-toggle="tab" href="#tab-4">Classes</a>
+        </li>
+
+
 
 			<li class="header-right">
 				<div class="hr-box">
@@ -60,46 +72,30 @@
 	</header>
 	<div class="clearfix"></div>
 
-<div class="nav_tabs">
+
+
     <div class="row">
 
         <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="add_blog" id="tab-1">
 
                   <h2>Upload Blog</h2>
-               <form method="post" enctype="multipart/form-data" action="{% url 'upload_image' %}">
+               <form method="post" enctype="multipart/form-data" action="{% url 'add_blog' %}">
                        {% csrf_token %}
                        {{ form.as_p }}
-                   <button type="submit">Upload Image</button>
+                   <button type="submit">Upload Blog</button>
                    <a href="{% url 'blog' %}" class="btn btn-outline-success">View Your Blogs</a>
                   </form>
 
             </div>
         </div>
-    </div>
+
 
 
 </div>
 
-<section class="newsletter-section set-bg" data-setbg="{% static 'img/newsletter-bg.jpg' %}">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="section-title text-white mb-0">
-						<h2>Subscribe to <span>newsletter</span></h2>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<form class="newsletter-form" method="post">
-                        {% csrf_token %}
-						<input type="text" placeholder="Your e-mail here">
-						<button class="site-btn" type="submit">Subscribe</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Newsletter section end -->
+
+
 
 	<!-- Footer section -->
 	<footer class="footer-section set-bg" data-setbg="{% static 'img/footer-bg.jpg' %}">
@@ -142,14 +138,12 @@
 				</div>
 				<div class="col-lg-3 col-sm-6">
 					<div class="footer-widget">
-						<h4>Social Media</h4>
+						<h4>The Admin Interface</h4>
 						<div class="fw-info-box">
-							<img src="{% static 'img/icons/4.png' %}" alt="">
+                            <a href="{% url 'manage' %}"><img src="{% static 'img/logo.png' %}" alt=""></a>
 							<div class="social-links">
-								<a href="#"><i class="fa fa-pinterest"></i></a>
-								<a href="#"><i class="fa fa-facebook"></i></a>
-								<a href="#"><i class="fa fa-twitter"></i></a>
-								<a href="#"><i class="fa fa-dribbble"></i></a>
+								<a href="{% url 'manage'  %}" class="" style="font-weight: bolder;color: #ffffff; font-size: 15px; text-decoration: none">Manage <br>MCUBE FITNESS <br>Gym</a>
+
 							</div>
 						</div>
 					</div>

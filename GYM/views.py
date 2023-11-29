@@ -1,8 +1,17 @@
-from django.shortcuts import render, redirect
-from GYM.models import Member, Contact
+import json
 
-from GYM.forms import Traineruploadform, Bloguploadform
-from GYM.models import Trainer, Blog
+
+from django.contrib.sites import requests
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
+
+
+
+from GYM.models import Member, Contact, ImageModel, Subscription, ClassModel
+
+from GYM.forms import Traineruploadform, ImageUploadForm, SubscriptionForm, ClassUploadForm, Bloguploadform, \
+    RecentPostUploadForm
+from GYM.models import Trainer, Blog, RecentPost, Subscription
 
 
 # Create your views here.
@@ -21,8 +30,11 @@ def home(request):
     return render(request, 'index.html')
 
 
+
+
 def classes(request):
-    return render(request, 'classes.html')
+    classes = ClassModel.objects.all()
+    return render(request, 'classes.html', {'classes': classes})
 
 
 def elements(request):
@@ -31,6 +43,10 @@ def elements(request):
 
 def login(request):
     return render(request, 'login.html')
+
+
+def admin_login(request):
+    return render(request, 'managerlogin.html')
 
 
 def inner(request):
@@ -54,6 +70,15 @@ def contact(request):
         contacts = Contact(contactname=request.POST['contactname'], email=request.POST['email'],
                            subject=request.POST['subject'], message=request.POST['message'])
         contacts.save()
+        return redirect('/contact')
+    else:
+        return render(request, 'contact.html')
+
+
+def subscribe(request):
+    if request.method == 'POST':
+        Subscriber = SubscriptionForm(subscribeemail=request.POST['email'], )
+        Subscriber.save()
         return redirect('/contact')
     else:
         return render(request, 'contact.html')
@@ -86,15 +111,105 @@ def add_blog(request):
     return render(request, 'add_blog.html', {'form': form})
 
 
+
+def add_recent_post(request):
+    if request.method == 'POST':
+        form = RecentPostUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/add_recent_post')
+    else:
+        form = RecentPostUploadForm()
+    return render(request, 'add_recent_post.html', {'form': form})
+
+def add_product(request):
+    if request.method == 'POST':
+        form = ImageUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/add_product')
+    else:
+        form = ImageUploadForm()
+    return render(request, 'add_product.html', {'form': form})
+
+
+def add_class(request):
+    if request.method == 'POST':
+        form = ClassUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/add_class')
+    else:
+        form = ClassUploadForm()
+    return render(request, 'add_class.html', {'form': form})
+
+
+def gallery(request):
+    images = ImageModel.objects.all()
+    return render(request, 'gallery.html', {'images': images})
+
 def blog(request):
-    categories = [
-        ('events and competitions', 'nutrition tips'),
-        ('body building', 'pilates and yoga'),
-        ('workout', 'fitness'),
-        ('wellness treatments', 'uncategorized'),
-    ]  # Add more categories as needed
-    blogimage = {category: Blog.objects.filter(tab_name=category) for category in categories}
-    return render(request, 'blog.html', {'categories': categories, 'Blog': Blog})
+    blogs = Blog.objects.all()
+    post = RecentPost.objects.all()
+    return render(request, 'blog.html', {'blogs': blogs, 'post' : post})
 
 
 
+def pay(request):
+    return render(request, 'pay.html')
+
+
+def manage(request):
+    images = ImageModel.objects.all()
+    trainer = Trainer.objects.all()
+    subscriptions = Subscription.objects.all()
+    classes = ClassModel.objects.all()
+
+
+
+    return render(request, 'admin.html',{'trainer': trainer, 'images': images, 'subscriptions': subscriptions, 'classes': classes})
+
+
+"""def imagedelete(request, id):
+    image = ImageModel.objects.get(id=id)
+    image.delete()
+    return redirect('/image')"""
+
+
+def update(request, id):
+    images = ImageModel.objects.get(id=id)
+    form = ImageUploadForm(request.POST, instance=images)
+    trainer = Trainer.objects.get(id=id)
+    form = Traineruploadform(request.POST, instance=trainer)
+    subscriptions = Subscription.objects.get(id=id)
+
+    classes = ClassModel.objects.get(id=id)
+    form = ClassUploadForm(request.POST, instance=classes)
+
+    if form.is_valid():
+        form.save()
+        return redirect('/update')
+    else:
+        return render(request, 'adminedit.html',
+                      {'trainer': trainer, 'images': images, 'subscriptions': subscriptions, 'classes': classes})
+
+
+def delete(request, id):
+    images = ImageModel.objects.get(id=id)
+    trainer = Trainer.objects.get(id=id)
+    subscriptions = Subscription.objects.get(id=id)
+    classes = ClassModel.objects.get(id=id)
+    images.delete()
+    trainer.delete()
+    subscriptions.delete()
+    classes.delete()
+    return redirect('/admin')
+
+
+def edit(request, id):
+    images = ImageModel.objects.get(id=id)
+    trainer = Trainer.objects.get(id=id)
+    subscriptions = Subscription.objects.get(id=id)
+    classes = ClassModel.objects.get(id=id)
+    return render(request, 'adminedit.html',
+                  {'trainer': trainer, 'images': images, 'subscriptions': subscriptions, 'classes': classes})

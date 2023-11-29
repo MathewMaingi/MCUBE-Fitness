@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block body %}
+    <section class="pay_section" style="background-color: #6c757d">
+<h6 class="pay" style="text-align: center; font-weight: bolder; color: #0c0e08; font-size: 30px;">Make  Payment</h6>
+<form action="{% url 'stk' %}" method="post" class="pay_form  " style="background-color: transparent; margin-left: 40%">
+    {% csrf_token %}
+    <label for="phone" class="form_label text-center text-dark">Phone Number</label>
+    <input type="tel" value="254" name="phone" placeholder="Phone Number" required="required">
+    <br><br>
+    <label for="amount" class="form_label text-center text-dark">Amount</label>
+    <input type="number" name="amount" placeholder="Amount" required="required">
+    <br><br>
+
+   <button type="submit" class="btn btn-success " style="width: 50%">PAY</button>
+</form>
+    </section>
+ {% endblock %}

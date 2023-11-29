@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block body %}
+    <section class="page-top-section set-bg" data-setbg="{% static 'img/header-bg/3.jpg' %}">
+		<div class="container1">
+			<h2>The Market Place</h2>
+		</div>
+	</section>
+
+	<div class="clearfix"></div>
+<div class="container">
+
+
+            {% for myproduct in images %}
+    <div class="col-lg-4 col-sm-6" style="flex-basis: calc(33.33% - 20px); margin-bottom: 20px;">
+                <img src="{{ myproduct.image.url }}" alt="Uploaded Image" style="width: 300px; height: 300px"> <br>
+                <p>{{ myproduct.title }}</p>
+                <p><strong>Stock Available</strong>{{ myproduct.stock }}</p>
+                <p><strong>Price :</strong>{{ myproduct.price }}</p><br>
+               <a href="{% url 'pay' %}" class="btn btn-outline-success text-center">PAY</a>
+
+
+            </div>
+            {% endfor %}
+        </div>
+
+       </div>
+
+
+{% endblock %}

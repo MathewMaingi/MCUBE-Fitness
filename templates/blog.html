@@ -47,6 +47,7 @@
 			<li><a href="{% url 'classes' %}">Classes</a></li>
 			<li><a class="active" href="{% url 'blog' %}">News</a></li>
 			<li><a href="{% url 'contact' %}">Contact</a></li>
+            <li><a href="{% url 'gallery' %}">Marketplace</a></li>
 			<li class="header-right">
 				<div class="hr-box">
 					<img src="{% static 'img/location-icon.png' %}" alt="">
@@ -68,35 +69,65 @@
 
 	<!-- Blog section -->
 	<section class="blog-section">
-    <div class="row">
-        <div class="col-lg-4">
-            <ul class="tab_names" role="tablist">
-         {% for blogcategory in categories %}
-        <li class="tab-item">
-      <a class="tab-link {% if forloop.first %}active{% endif %}" id="{{ category }}-tab" data-toggle="tab" href="#{{ category }}" role="tab">{{ category }}</a>        </li>
-          {% endfor %}
-         </ul>
-        </div>
-      <div class="row">
-          <div class="tab-content">
-         {% for category in categories %}
-        <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="{{ category }}" role="tabpanel">
-            {% for myblog in Blog[blogcategory] %}
-                <div class="col">
-                <h5>{{ myblog.about }}</h5>
-                <p>{{ myblog.description }}</p>
+		<div class="container">
+			<div class="row">
+                {% for blogs in blogs %}
+				<div class="col-lg-8">
+					<div class="blog-item" style="">
+						<img src="{{ blogs.image.url }}  " alt="" >
+						<h2>{{ blogs.about }}  </h2>
+						<div class="blog-metas">
+							<div class="blog-meta"><img src="img/icons/edit.png" alt=""> By Admin</div>
+							<div class="blog-meta"><img src="img/icons/layout.png" alt="">in Workout</div>
+							<div class="blog-meta"><img src="img/icons/profile.png" alt="">2 comments</div>
+						</div>
+						<p>{{ blogs.description }}</p>
+
+					</div>
                 </div>
-                <div class="col-"><img src="{{ blogimage.image.url }}" alt="{{ category }} Image"></div>
-            {% endfor %}
-        </div>
-    {% endfor %}
-</div>
-      </div>
+                {% endfor %}
 
-    </div>
+
+				<div class="col-lg-4 ">
+
+					<div class="widget-area">
+
+
+						<h2 class="widget-title">Recent Posts</h2>
+                        {% for mypost in post %}
+						<div class="recent-post-widget">
+							<div class="rp-item">
+								<img src="{{ mypost.image.url }}  " alt="" style="width: 250px; height: 155px">
+								<div class="rp-text">
+									<p>{{ mypost.about }}  </p>
+									<p>{{ mypost.description }}  </p>
+									<div class="rp-date">{{  mypost.date}}  </div>
+								</div>
+							</div>
+                         </div>
+                        {% endfor %}
+
+					</div>
+					<div class="widget-area">
+						<h2 class="widget-title">Tags</h2>
+						<div class="tags-widget">
+							<a href="#">sport</a>
+							<a href="#">fitness</a>
+							<a href="#">wheight lifting</a>
+							<a href="#">nutrition</a>
+							<a href="#">tips</a>
+							<a href="#">fitted</a>
+							<a href="#">abs</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</section>
-	<!-- Newsletter section end -->
+	<!-- Blog section end -->
 
+
+	<!-- Newsletter section end -->
 	<!-- Footer section -->
 	<footer class="footer-section set-bg" data-setbg="{% static 'img/footer-bg.jpg' %}">
 		<div class="container">

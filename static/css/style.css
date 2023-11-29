@@ -682,6 +682,7 @@ Newsletter section
 
 .newsletter-section {
 	padding: 84px 0;
+
 }
 
 .newsletter-section .section-title {
@@ -1345,6 +1346,7 @@ Responsive
 		padding-top: 50px;
 	}
 }
+     /* pay.html*/
 
 /* Large Mobile :480px. */
 
@@ -1489,3 +1491,4 @@ Responsive
 		margin-right: 0;
 	}
 }
+

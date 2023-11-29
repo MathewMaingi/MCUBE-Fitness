@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block body %}
+<h5>Update Products</h5> <div class="update_product">
+    <form action="/update/{{myproduct.id  }}" method="post" class="p-4 update_form">
+    {% csrf_token %}
+        <input type="text" id="name" name="name" value="{{ myproduct.title }}" class="form-control" placeholder="Enter new price"><br><br>
+        <input type="number" id="number" name="number" value="{{ myproduct.stock }}" class="form-control" placeholder="Enter new stock Available"><br><br>
+        <input type="number" id="price" name="price" value="{{ myproduct.price }}" class="form-control" placeholder="Enter new product description"><br><br>
+    </form>
+</div>
+
+{% endblock %}
